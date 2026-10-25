@@ -1,1 +1,593 @@
-index.htcl
+<!doctype html>
+<html lang="zh-CN" class="js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tungbro's 启动器 · 下载与 MKZY 服务器</title>
+  <meta name="description" content="Tungbro's 启动器 1.2.0 下载：支持 Vanilla、Fabric、Quilt、Forge、NeoForge，整合游戏与 Mod 下载、版本隔离、开服工具与 e4mc 联机。还有 MKZY Minecraft 服务器宣传与加入方式。">
+  <meta name="theme-color" content="#070a07">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/favicon.png">
+  <link rel="preload" as="image" href="assets/img/screenshots/home.webp">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="Tungbro's 启动器 · 把方块世界装进一个启动器">
+  <meta property="og:description" content="下载 Tungbro's 启动器 1.2.0，加入 MKZY Minecraft 服务器。无规则生存，允许矿透，禁止外挂。">
+  <meta property="og:image" content="assets/img/screenshots/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Tungbro's Launcher",
+    "softwareVersion": "1.2.0",
+    "operatingSystem": "Windows 10, Windows 11",
+    "applicationCategory": "GameApplication",
+    "description": "面向 Windows 的 Minecraft 启动器，支持多版本与多加载器、Mod 下载、版本隔离、服务端管理、e4mc 联机与自定义外观。",
+    "offers": { "@type": "Offer", "price": "0" }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v11m0 0 4-4m-4 4-4-4"/><path d="M4 16v3.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V16"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16m0 0-6-6m6 6-6 6"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M20 12H4m0 0 6-6m-6 6 6 6"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"/></symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.2 12.2 2.5 2.5 5.2-5.3"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M15 9V6.5A2.5 2.5 0 0 0 12.5 4h-6A2.5 2.5 0 0 0 4 6.5v6A2.5 2.5 0 0 0 6.5 15H9"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M9 4H4v5m11-5h5v5M9 20H4v-5m11 5h5v-5"/></symbol>
+    <symbol id="i-cube" viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4.4 7.6 7.6 4.2 7.6-4.2M12 21v-9.2"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></symbol>
+    <symbol id="i-package" viewBox="0 0 24 24"><path d="M4 8.5 12 4l8 4.5v7L12 20l-8-4.5v-7Z"/><path d="M4.4 8.8 12 13l7.6-4.2M12 20v-7"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.5 7.5A2.5 2.5 0 0 1 6 5h3l2 2.5h7A2.5 2.5 0 0 1 20.5 10v7.5A2.5 2.5 0 0 1 18 20H6a2.5 2.5 0 0 1-2.5-2.5v-10Z"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="7" rx="2"/><rect x="3.5" y="13" width="17" height="7" rx="2"/><path d="M7.5 7.5h.01M7.5 16.5h.01M11 7.5h5.5M11 16.5h5.5"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5.5c0 4.3 2.8 7.4 7 9.5 4.2-2.1 7-5.2 7-9.5V6l-7-3Z"/><path d="m9.2 12.2 2 2 3.8-4"/></symbol>
+    <symbol id="i-feather" viewBox="0 0 24 24"><path d="M20 4c-4.8-.3-8.8 1.1-11.3 4.4C6.8 10.8 6.2 14 6.8 17.2 10 17.8 13.2 17.2 15.6 14.8 19 11.9 20.2 8.2 20 4Z"/><path d="M4 20 15 9M8.5 13H14"/></symbol>
+    <symbol id="i-diamond" viewBox="0 0 24 24"><path d="m12 3 7 6-7 12L5 9l7-6Z"/><path d="M5 9h14M9.3 9 12 3l2.7 6-2.7 12L9.3 9Z"/></symbol>
+    <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m7.5 9 3 3-3 3M13 15h4"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13.5 2 4 14h7l-1 8 9.5-12h-7l1-8Z"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3c2.4 2.5 3.7 5.5 3.7 9S14.4 18.5 12 21c-2.4-2.5-3.7-5.5-3.7-9S9.6 5.5 12 3Z"/></symbol>
+    <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2.5"/><path d="M9 21h6M12 17v4"/></symbol>
+    <symbol id="i-bolt-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m13 6.5-5 7h3.5l-.5 4 5-7H12.5l.5-4Z"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-qq" viewBox="0 0 24 24"><path d="M7.2 9.2C7.2 5.9 9.4 3.5 12 3.5s4.8 2.4 4.8 5.7c0 1 .5 1.6 1 2.4.7 1.1 1.3 2.4 1.3 4 0 2.4-1.1 3.2-2.1 3.2-.8 0-1.4-.4-2-1-.6.7-1.7 1.2-3 1.2s-2.4-.5-3-1.2c-.6.6-1.2 1-2 1-1 0-2.1-.8-2.1-3.2 0-1.6.6-2.9 1.3-4 .5-.8 1-1.4 1-2.4Z"/><path d="M9.3 9.5h.01M14.7 9.5h.01"/></symbol>
+  </svg>
+
+  <header class="site-header" id="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Tungbro's 启动器首页">
+        <img src="assets/img/logo.png" width="38" height="38" alt="">
+        <span class="brand-copy">
+          <strong>Tungbro's</strong>
+          <small>启动器</small>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="主导航">
+        <a class="nav-link" href="#features" data-nav>启动器</a>
+        <a class="nav-link" href="#gallery" data-nav>界面</a>
+        <a class="nav-link" href="#download" data-nav>下载</a>
+        <a class="nav-link" href="#server" data-nav>服务器</a>
+      </nav>
+
+      <div class="nav-actions">
+        <span class="nav-version">v1.2.0</span>
+        <a class="btn btn-primary btn-small nav-download" href="downloads/Tungbros-1.2.0-win-x64.zip" download="Tungbros-1.2.0-win-x64.zip">
+          <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+          <span>下载</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="mobile-menu">
+          <svg class="icon menu-icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+          <svg class="icon close-icon" aria-hidden="true"><use href="#i-close"></use></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#features">启动器功能 <span>01</span></a>
+      <a href="#gallery">界面截图 <span>02</span></a>
+      <a href="#download">下载启动器 <span>03</span></a>
+      <a href="#server">MKZY 服务器 <span>04</span></a>
+      <div class="mobile-menu-foot">
+        <span>Windows x64 · v1.2.0</span>
+        <a href="downloads/Tungbros-1.2.0-win-x64.zip" download="Tungbros-1.2.0-win-x64.zip">立即下载</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-grid-bg"></div>
+        <div class="hero-glow"></div>
+        <svg class="hero-cube hero-cube--one" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M50 5 95 30 50 55 5 30Z" fill="#c9ff70"/>
+          <path d="M5 30 50 55v40L5 70Z" fill="#65952a"/>
+          <path d="M95 30 50 55v40l45-25Z" fill="#88c63a"/>
+        </svg>
+        <svg class="hero-cube hero-cube--two" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M50 5 95 30 50 55 5 30Z" fill="#c9ff70"/>
+          <path d="M5 30 50 55v40L5 70Z" fill="#65952a"/>
+          <path d="M95 30 50 55v40l45-25Z" fill="#88c63a"/>
+        </svg>
+      </div>
+
+      <div class="container hero-container">
+        <div class="hero-copy">
+          <p class="kicker"><span class="pulse-dot"></span> TUNGBRO'S LAUNCHER <span class="kicker-sep">·</span> 1.2.0</p>
+          <h1>把方块世界，<br><span class="accent">装进一个启动器。</span></h1>
+          <p class="lead">从游戏本体到 Mod，从版本隔离到开服联机。Tungbro's 把复杂的步骤留在身后，把「开始游戏」留给你。</p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-hero" href="downloads/Tungbros-1.2.0-win-x64.zip" download="Tungbros-1.2.0-win-x64.zip">
+              <span class="hero-btn-icon"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg></span>
+              <span class="hero-btn-text"><strong>下载启动器</strong><small>Windows x64 · 135 MB</small></span>
+              <svg class="icon hero-btn-arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+            </a>
+            <a class="btn btn-ghost" href="#features">看看能做什么 <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </div>
+
+          <ul class="hero-points" aria-label="启动器特点">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>解压即用</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>自动准备 Java</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>正版 / 离线</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-visual-glow" aria-hidden="true"></div>
+          <div class="app-window">
+            <div class="app-chrome">
+              <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="app-chrome-title">Tungbro's Launcher</span>
+              <span class="app-chrome-badge">v1.2.0</span>
+            </div>
+            <img class="hero-shot" src="assets/img/screenshots/home.webp" width="1460" height="920" alt="Tungbro's 启动器启动页，显示 3D 皮肤、启动游戏按钮和版本选择" fetchpriority="high">
+          </div>
+          <div class="float-card float-card--loader">
+            <span class="mini-orb"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg></span>
+            <span><strong>Fabric 0.18.6</strong><small>加载器已就绪</small></span>
+          </div>
+          <div class="float-card float-card--isolation">
+            <span class="float-status"></span>
+            <span><strong>版本隔离</strong><small>每个实例，互不打扰</small></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="platform-strip">
+      <div class="container strip-inner">
+        <span class="strip-label">SUPPORTED</span>
+        <ul class="strip-list" aria-label="支持的加载器">
+          <li>Vanilla</li>
+          <li>Fabric</li>
+          <li>Quilt</li>
+          <li>Forge</li>
+          <li>NeoForge</li>
+        </ul>
+        <span class="strip-note"><svg class="icon" aria-hidden="true"><use href="#i-monitor"></use></svg> Windows 10 / 11 · x64</span>
+      </div>
+    </div>
+
+    <section class="section features" id="features">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="section-index">01 / LAUNCHER</span>
+          <div class="section-title-row">
+            <h2>从下载到启动，<br><span class="text-dim">一个窗口就够了。</span></h2>
+            <p>不只是一个启动按钮。找版本、装 Mod、开服、联机、换皮肤——那些原本要来回折腾的事，都收进同一个界面。</p>
+          </div>
+        </div>
+
+        <div class="bento">
+          <article class="feature feature--content" data-reveal>
+            <div class="feature-copy">
+              <div class="feature-top">
+                <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-package"></use></svg></span>
+                <span class="feature-no">01</span>
+              </div>
+              <span class="feature-kicker">CONTENT HUB</span>
+              <h3>内容，不必再到处找。</h3>
+              <p>Mod、整合包、资源包、光影、数据包与服务器插件，从 Modrinth 直接获取，所需依赖自动处理。</p>
+              <div class="tag-row">
+                <span>中英双语搜索</span>
+                <span>依赖自动安装</span>
+              </div>
+            </div>
+            <div class="mod-mini" aria-hidden="true">
+              <div class="mod-mini-head"><span>发现 模组</span><small>8,612 个结果</small></div>
+              <div class="mod-row">
+                <span class="mod-avatar mod-avatar--green">Na</span>
+                <span class="mod-info"><strong>钠 <em>Sodium</em></strong><small>优化 · 253.9M 下载</small></span>
+                <span class="mod-action">安装</span>
+              </div>
+              <div class="mod-row">
+                <span class="mod-avatar mod-avatar--sand">Cr</span>
+                <span class="mod-info"><strong>机械动力 <em>Create</em></strong><small>科技 · 8.3M 下载</small></span>
+                <span class="mod-action">安装</span>
+              </div>
+              <div class="mod-row">
+                <span class="mod-avatar mod-avatar--violet">Ir</span>
+                <span class="mod-info"><strong>Iris Shaders <em>光影</em></strong><small>视觉 · 196.6M 下载</small></span>
+                <span class="mod-action">安装</span>
+              </div>
+              <div class="mod-mini-foot"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg> 版本匹配与依赖处理，交给启动器</div>
+            </div>
+          </article>
+
+          <article class="feature feature--versions" data-reveal data-delay="60">
+            <div class="feature-top">
+              <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg></span>
+              <span class="feature-no">02</span>
+            </div>
+            <span class="feature-kicker">VERSIONS</span>
+            <h3>所有版本，一个入口。</h3>
+            <p>正式版、快照和历史版本随时可选。五种加载器的安装流程统一，少一点折腾，多一点游戏时间。</p>
+            <div class="loader-cloud" aria-label="支持的加载器">
+              <span>Vanilla</span><span>Fabric</span><span>Quilt</span><span>Forge</span><span>NeoForge</span>
+            </div>
+            <div class="version-line">
+              <span>正式版</span><i></i><span>快照</span><i></i><span>历史版本</span>
+            </div>
+          </article>
+
+          <article class="feature feature--isolation" data-reveal>
+            <div class="feature-top">
+              <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-folder"></use></svg></span>
+              <span class="feature-no">03</span>
+            </div>
+            <span class="feature-kicker">ISOLATION</span>
+            <h3>每个版本，互不打扰。</h3>
+            <p>默认开启版本隔离，mods、存档、资源包与配置各自独立，切换整合包不再互相污染。</p>
+            <div class="isolation-visual" aria-hidden="true">
+              <div class="iso-row"><span class="iso-dot iso-dot--lime"></span><strong>26.3 · Aurora</strong><small>独立实例</small></div>
+              <div class="iso-row"><span class="iso-dot iso-dot--blue"></span><strong>1.21.11 · Vanilla</strong><small>独立实例</small></div>
+              <div class="iso-row"><span class="iso-dot iso-dot--sand"></span><strong>1.20.1 · Forge</strong><small>独立实例</small></div>
+            </div>
+          </article>
+
+          <article class="feature feature--server" data-reveal data-delay="60">
+            <div class="feature-top">
+              <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-server"></use></svg></span>
+              <span class="feature-no">04</span>
+            </div>
+            <span class="feature-kicker">SERVER</span>
+            <h3>开服与联机，也在这里。</h3>
+            <p>创建 Vanilla、Paper、Fabric 等服务端，在启动器内启停并查看日志。e4mc 让朋友无需端口映射就能加入。</p>
+            <div class="terminal" aria-hidden="true">
+              <div class="terminal-bar"><span></span><span></span><span></span><small>server console</small></div>
+              <div class="terminal-body">
+                <p><span class="prompt">&gt;</span> Starting minecraft server</p>
+                <p><span class="prompt">&gt;</span> Loading 4 mods<span class="cursor"></span></p>
+                <p class="terminal-ok"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> Done (2.614s)!</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="feature feature--account" data-reveal data-delay="120">
+            <div class="feature-top">
+              <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg></span>
+              <span class="feature-no">05</span>
+            </div>
+            <span class="feature-kicker">ACCOUNT</span>
+            <h3>你的账号，你的皮肤。</h3>
+            <p>Microsoft 正版设备代码登录，或使用离线账户。启动页展示可旋转的 3D 皮肤，随时更换。</p>
+            <div class="account-visual" aria-hidden="true">
+              <img src="assets/img/steve-head.png" width="56" height="56" alt="">
+              <span class="account-copy"><strong>Steve</strong><small>离线账户 · 已就绪</small></span>
+              <span class="account-badge">已登录</span>
+            </div>
+          </article>
+
+          <article class="feature-details" data-reveal>
+            <div class="detail-item">
+              <span class="detail-icon"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg></span>
+              <span><strong>断点续传</strong><small>网络中断，从断点继续</small></span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-icon"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span>
+              <span><strong>镜像加速</strong><small>官方源 / BMCLAPI 自动回退</small></span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-icon"><svg class="icon" aria-hidden="true"><use href="#i-zap"></use></svg></span>
+              <span><strong>自动 Java</strong><small>按需准备 Temurin 运行时</small></span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-icon"><svg class="icon" aria-hidden="true"><use href="#i-music"></use></svg></span>
+              <span><strong>自定义外观</strong><small>背景、音乐与 3D 皮肤</small></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery" id="gallery">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="section-index">02 / INTERFACE</span>
+          <div class="section-title-row">
+            <h2>界面，当然也要好看。</h2>
+            <p>深色、克制、带一点方块世界的绿。没有层层叠叠的弹窗，重要的事情一眼就能看到。</p>
+          </div>
+        </div>
+
+        <div class="gallery-grid">
+          <button class="shot shot--a" type="button" data-full="assets/img/screenshots/downloads.webp" data-caption="下载中心 · 中英双语搜索，依赖自动安装" aria-label="查看大图：下载中心">
+            <span class="shot-img"><img src="assets/img/screenshots/downloads.webp" width="1460" height="1180" loading="lazy" alt="启动器下载中心，展示 Mod 列表、双语搜索和版本筛选"></span>
+            <span class="shot-tag">CONTENT HUB</span>
+            <span class="shot-zoom"><svg class="icon" aria-hidden="true"><use href="#i-expand"></use></svg></span>
+            <span class="shot-caption"><strong>下载中心</strong><small>中英双语搜索，依赖自动安装</small></span>
+          </button>
+
+          <button class="shot shot--b" type="button" data-full="assets/img/screenshots/tasks.webp" data-caption="任务面板 · 安装进度与下载目录一目了然" aria-label="查看大图：任务面板">
+            <span class="shot-img"><img src="assets/img/screenshots/tasks.webp" width="1460" height="920" loading="lazy" alt="启动器后台下载任务面板，显示安装进度和游戏版本列表"></span>
+            <span class="shot-tag">TASK PANEL</span>
+            <span class="shot-zoom"><svg class="icon" aria-hidden="true"><use href="#i-expand"></use></svg></span>
+            <span class="shot-caption"><strong>任务面板</strong><small>进度与目录，一目了然</small></span>
+          </button>
+
+          <button class="shot shot--c" type="button" data-full="assets/img/screenshots/settings.webp" data-caption="个性化设置 · 背景、音乐与启动参数都由你决定" aria-label="查看大图：个性化设置">
+            <span class="shot-img"><img src="assets/img/screenshots/settings.webp" width="1460" height="1900" loading="lazy" alt="启动器个性化设置页面，包含 3D 皮肤、背景图片和背景音乐设置"></span>
+            <span class="shot-tag">PERSONALIZE</span>
+            <span class="shot-zoom"><svg class="icon" aria-hidden="true"><use href="#i-expand"></use></svg></span>
+            <span class="shot-caption"><strong>个性化</strong><small>背景、音乐与外观，随心调整</small></span>
+          </button>
+
+          <button class="shot shot--d" type="button" data-full="assets/img/screenshots/mods.webp" data-caption="已安装模组 · 版本内模组状态清晰可见" aria-label="查看大图：已安装模组">
+            <span class="shot-img"><img src="assets/img/screenshots/mods.webp" width="1460" height="1000" loading="lazy" alt="启动器已安装模组弹窗，显示模组名称、版本、作者和启用状态"></span>
+            <span class="shot-tag">INSTANCE MODS</span>
+            <span class="shot-zoom"><svg class="icon" aria-hidden="true"><use href="#i-expand"></use></svg></span>
+            <span class="shot-caption"><strong>已安装模组</strong><small>版本里的东西，清清楚楚</small></span>
+          </button>
+        </div>
+        <p class="gallery-hint"><svg class="icon" aria-hidden="true"><use href="#i-expand"></use></svg> 点击任意截图查看大图</p>
+      </div>
+    </section>
+
+    <section class="section download-section" id="download">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="section-index">03 / DOWNLOAD</span>
+          <div class="section-title-row">
+            <h2>最新版本，<br><span class="text-dim">解压就能开玩。</span></h2>
+            <p>1.2.0 便携版包含完整运行环境。下载、解压、双击，三步进入方块世界。</p>
+          </div>
+        </div>
+
+        <div class="download-card" data-reveal>
+          <div class="download-main">
+            <div class="download-badges">
+              <span class="badge badge--lime">Windows x64</span>
+              <span class="badge">便携版</span>
+              <span class="badge">v1.2.0</span>
+            </div>
+            <h3>下载 Tungbro's 启动器</h3>
+            <p class="download-desc">完整的 Electron 运行环境已经打包在内。无需安装 Node.js，解压后直接运行 <code>Tungbros Launcher.exe</code>。</p>
+
+            <a class="download-button" href="downloads/Tungbros-1.2.0-win-x64.zip" download="Tungbros-1.2.0-win-x64.zip">
+              <span class="download-button-icon"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg></span>
+              <span class="download-button-copy"><strong>下载 1.2.0 便携版</strong><small>ZIP · 135 MB · 2026.10.25</small></span>
+              <svg class="icon download-button-arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+            </a>
+
+            <div class="download-meta">
+              <span><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> Windows 10 / 11 64 位</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> 免安装</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> 自动准备 Java</span>
+            </div>
+
+            <div class="checksum">
+              <span class="checksum-label">SHA-256</span>
+              <code id="checksum-text">18fc35436312ad26af2ca5ae32868875b111e1390b1431e723ce9a1b3f044aa8</code>
+              <button class="icon-button checksum-copy" type="button" data-copy="18fc35436312ad26af2ca5ae32868875b111e1390b1431e723ce9a1b3f044aa8" aria-label="复制 SHA-256 校验值">
+                <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+              </button>
+            </div>
+            <p class="checksum-note">下载完成后可核对校验值，确认文件完整。</p>
+          </div>
+
+          <aside class="release-card" aria-label="1.2.0 版本信息">
+            <div class="release-head">
+              <img class="release-logo" src="assets/img/logo.png" width="48" height="48" alt="">
+              <span class="release-name"><strong>Tungbro's 启动器</strong><small>v1.2.0 · 稳定版</small></span>
+              <span class="release-latest">最新</span>
+            </div>
+
+            <div class="release-notes">
+              <h4>本次更新</h4>
+              <ul>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span>下载任务新增目录与进度详情</span></li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span>已安装模组一览，状态更清楚</span></li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span>下载页支持中英双语搜索</span></li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span>背景与背景音乐体验修复</span></li>
+              </ul>
+            </div>
+
+            <div class="release-meta">
+              <div><span>发布日期</span><strong>2026.10.25</strong></div>
+              <div><span>运行平台</span><strong>Windows x64</strong></div>
+              <div><span>文件大小</span><strong>135 MB</strong></div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="install-steps" data-reveal>
+          <div class="step">
+            <span class="step-no">01</span>
+            <div><strong>解压 ZIP</strong><p>解压到固定目录，保持文件夹完整。</p></div>
+          </div>
+          <div class="step">
+            <span class="step-no">02</span>
+            <div><strong>运行启动器</strong><p>双击 <code>Tungbros Launcher.exe</code>。</p></div>
+          </div>
+          <div class="step">
+            <span class="step-no">03</span>
+            <div><strong>选版本，开始</strong><p>首次启动会自动准备需要的 Java。</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section server-section" id="server">
+      <div class="container">
+        <div class="server-stage" data-reveal>
+          <img class="server-bg" src="assets/img/backgrounds/aurora.svg" alt="" loading="lazy">
+          <div class="server-overlay" aria-hidden="true"></div>
+
+          <div class="server-copy">
+            <span class="section-index">04 / SERVER</span>
+            <span class="server-edition"><span class="pulse-dot"></span> MINECRAFT JAVA EDITION</span>
+            <h2><span class="server-wordmark">MKZY</span> 服务器<br><span class="server-rule">规则只有一条：<span class="accent">不开挂。</span></span></h2>
+            <p class="server-lead">无规则生存，矿物透视开放。没有繁琐的条条框框，只有公平的底线。带上朋友，直接进服。</p>
+            <div class="server-tags">
+              <span><svg class="icon" aria-hidden="true"><use href="#i-feather"></use></svg>无规则</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#i-diamond"></use></svg>可矿透</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>禁止外挂</span>
+            </div>
+          </div>
+
+          <div class="join-card">
+            <div class="join-head">
+              <span class="join-label">CONNECT</span>
+              <span class="join-edition">Java Edition</span>
+            </div>
+            <button class="address-box" type="button" data-copy="mkzy.9666.fun:30049" aria-label="复制服务器地址 mkzy.9666.fun:30049">
+              <span class="address-label">服务器地址</span>
+              <span class="address-value">mkzy.9666.fun<span class="address-port">:30049</span></span>
+              <span class="address-copy"><svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg><span>点击复制</span></span>
+            </button>
+            <ol class="join-steps">
+              <li><span>1</span>打开 Minecraft：Java 版</li>
+              <li><span>2</span>进入「多人游戏」→「添加服务器」</li>
+              <li><span>3</span>粘贴地址，加入世界</li>
+            </ol>
+            <p class="join-note"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg> 复制地址，在「多人游戏」中添加即可</p>
+          </div>
+        </div>
+
+        <div class="rule-grid">
+          <article class="rule-card" data-reveal>
+            <span class="rule-icon"><svg class="icon" aria-hidden="true"><use href="#i-feather"></use></svg></span>
+            <h3>自由，不设限</h3>
+            <p>没有复杂的规矩。探索、建造、生存，按你喜欢的节奏来。</p>
+          </article>
+          <article class="rule-card" data-reveal data-delay="60">
+            <span class="rule-icon"><svg class="icon" aria-hidden="true"><use href="#i-diamond"></use></svg></span>
+            <h3>矿透，随便用</h3>
+            <p>允许矿物透视。找矿更直接，把时间留给真正想做的事。</p>
+          </article>
+          <article class="rule-card" data-reveal data-delay="120">
+            <span class="rule-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg></span>
+            <h3>外挂，零容忍</h3>
+            <p>作弊与外挂一律禁止。无规则，不等于没有底线。</p>
+          </article>
+        </div>
+
+        <div class="community-bar" data-reveal>
+          <div class="community-main">
+            <span class="qq-mark">QQ</span>
+            <div>
+              <span class="community-kicker">官方玩家群</span>
+              <h3>来群里，找到你的队友。</h3>
+              <p>服务器动态、开服消息与日常交流，都在这里。</p>
+            </div>
+          </div>
+          <div class="community-action">
+            <span class="qq-number">491860123</span>
+            <button class="btn btn-primary" type="button" data-copy="491860123">
+              <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+              复制群号
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#top" aria-label="返回顶部">
+            <img src="assets/img/logo.png" width="38" height="38" alt="">
+            <span class="brand-copy"><strong>Tungbro's</strong><small>启动器</small></span>
+          </a>
+          <p>把方块世界，装进一个启动器。<br>为 Minecraft 玩家准备的 Windows 客户端。</p>
+          <span class="footer-version">v1.2.0 · Windows x64</span>
+        </div>
+
+        <div class="footer-col">
+          <h3>启动器</h3>
+          <a href="#features">功能亮点</a>
+          <a href="#gallery">界面截图</a>
+          <a href="#download">下载 1.2.0</a>
+        </div>
+
+        <div class="footer-col">
+          <h3>服务器</h3>
+          <a href="#server">MKZY 服务器</a>
+          <button type="button" data-copy="mkzy.9666.fun:30049">复制服务器地址</button>
+          <button type="button" data-copy="491860123">复制 QQ 群号</button>
+        </div>
+
+        <div class="footer-col footer-col--contact">
+          <h3>社区</h3>
+          <p>服务器官方 QQ 群</p>
+          <button class="footer-qq" type="button" data-copy="491860123">
+            <span>491860123</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+          </button>
+          <a class="back-top" href="#top">回到顶部 <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Tungbro's Launcher. 保留所有权利。</p>
+        <p>本站与 Mojang Studios、Microsoft 无隶属关系。Minecraft 是 Mojang Studios 的商标。</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="toast-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>
+    <span id="toast-text">已复制到剪贴板</span>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop" data-close></div>
+    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="启动器截图预览">
+      <button class="lightbox-close" type="button" data-close aria-label="关闭预览">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+      <button class="lightbox-nav lightbox-prev" type="button" aria-label="上一张截图">
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg>
+      </button>
+      <button class="lightbox-nav lightbox-next" type="button" aria-label="下一张截图">
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+      </button>
+      <figure class="lightbox-figure">
+        <img id="lightbox-image" alt="">
+        <figcaption>
+          <span id="lightbox-caption"></span>
+          <span id="lightbox-count" class="lightbox-count"></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
